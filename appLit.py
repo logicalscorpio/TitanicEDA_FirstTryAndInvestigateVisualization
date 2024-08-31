@@ -4,21 +4,17 @@ import plotly.express as px
 
 # !pipreqs . --force
 
-# Load and preprocess data
 df = pd.read_csv('train.csv')
 df['AgeGroup'] = pd.cut(df['Age'], bins=[0, 12, 18, 60, 80], labels=['Child', 'Teenager', 'Adult', 'Senior'])
 df['FamilySize'] = df['SibSp'] + df['Parch'] + 1
 
-# Streamlit App
 st.title("Titanic Interactive Survival Dashboard")
 st.markdown("### Analyzing Titanic Data by Passenger Class and Gender")
 
-# Sidebar controls
 st.sidebar.header("Filter Options")
 selected_class = st.sidebar.selectbox("Select Passenger Class:", [1, 2, 3], index=0)
 gender_filter = st.sidebar.radio("Filter by Gender:", ['All', 'male', 'female'])
 
-# Filter data based on selections
 if gender_filter != 'All':
     filtered_df = df[(df['Pclass'] == selected_class) & (df['Sex'] == gender_filter)]
 else:
