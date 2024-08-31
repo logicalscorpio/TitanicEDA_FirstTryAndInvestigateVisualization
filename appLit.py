@@ -9,7 +9,7 @@ df['FamilySize'] = df['SibSp'] + df['Parch'] + 1
 
 # Streamlit App
 st.title("Titanic Interactive Survival Dashboard")
-st.markdown("### Analyzing Titanic Data by Passenger Class and Gender")
+st.markdown("### Analyzing Titanic Data")
 
 # Sidebar controls
 st.sidebar.header("Filter Options")
@@ -24,7 +24,7 @@ else:
 
 if gender_filter == 'All':
     # Gender distribution pie chart
-    st.markdown(f"### Gender Distribution in Class {selected_class}")
+    # st.markdown(f"### Gender Distribution in Class {selected_class}")
     gender_pie_fig = px.pie(filtered_df, names='Sex', 
                             title=f'Gender Distribution in Class {selected_class}',
                             color_discrete_sequence=px.colors.qualitative.Plotly, 
@@ -40,7 +40,7 @@ age_group_fig = px.histogram(filtered_df, x='AgeGroup', color='AgeGroup',
 st.plotly_chart(age_group_fig)
 
 # Fare distribution using Violin Plot
-st.markdown(f"### Fare Distribution in Class {selected_class}")
+# st.markdown(f"### Fare Distribution in Class {selected_class}")
 fare_violin = px.violin(filtered_df, y='Fare', color='Sex' if gender_filter == 'female' else None, box=True, points='all',
                         title=f'Fare Distribution in Class {selected_class}',
                         labels={'Fare': 'Fare'},
@@ -49,7 +49,7 @@ fare_violin.update_traces(meanline_visible=True)
 st.plotly_chart(fare_violin)
 
 # Family size survival rate
-st.markdown(f"### Survival by Family Size in Class {selected_class}")
+# st.markdown(f"### Survival by Family Size in Class {selected_class}")
 family_size_fig = px.histogram(filtered_df, x='FamilySize', color='Survived', barmode='group',
                                labels={'FamilySize': 'Family Size', 'Survived': 'Survived'},
                                title=f'Survival by Family Size in Class {selected_class}',
