@@ -32,7 +32,7 @@ if gender_filter == 'All':
     st.plotly_chart(gender_pie_fig)
 
 # Combined Age group distribution
-st.markdown(f"### Age Group Distribution in Class {selected_class}")
+# st.markdown(f"### Age Group Distribution in Class {selected_class}")
 age_group_fig = px.histogram(filtered_df, x='AgeGroup', color='AgeGroup',
                              labels={'AgeGroup': 'Age Group'},
                              title=f'Age Group Distribution in Class {selected_class}',
